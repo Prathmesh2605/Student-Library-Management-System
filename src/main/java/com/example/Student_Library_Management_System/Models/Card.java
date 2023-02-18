@@ -1,5 +1,5 @@
 package com.example.Student_Library_Management_System.Models;
-
+import java.util.*;
 
 import com.example.Student_Library_Management_System.Enums.CardStatus;
 import jakarta.persistence.*;
@@ -38,6 +38,10 @@ public class Card {
     public Student getStudentVariableName() {
         return studentVariableName;
     }
+
+    //car is parent wrt book
+    @OneToMany(mappedBy = "card", cascade = CascadeType.ALL)
+    List<Book> bookIssued = new ArrayList<>();
 
     public void setStudentVariableName(Student studentVariableName) {
         this.studentVariableName = studentVariableName;

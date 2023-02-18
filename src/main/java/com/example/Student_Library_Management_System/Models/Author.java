@@ -1,5 +1,5 @@
 package com.example.Student_Library_Management_System.Models;
-
+import java.util.*;
 import jakarta.persistence.*;
 
 @Entity
@@ -16,6 +16,59 @@ public class Author {
 
     private String country;
 
-    @OneToMany(mappedBy = "",cascade = CascadeType.ALL)
+    private double rating;
 
+    @OneToMany(mappedBy = "",cascade = CascadeType.ALL)
+    private List<Book> booksWritten = new ArrayList<>();
+
+    public Author() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public double getRating() {
+        return rating;
+    }
+
+    public void setRating(double rating) {
+        this.rating = rating;
+    }
+
+    public List<Book> getBooksWritten() {
+        return booksWritten;
+    }
+
+    public void setBooksWritten(List<Book> booksWritten) {
+        this.booksWritten = booksWritten;
+    }
 }

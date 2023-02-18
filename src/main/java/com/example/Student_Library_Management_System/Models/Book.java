@@ -16,6 +16,8 @@ public class Book {
 
     private int pages;
 
+    private boolean issued;
+
     @Enumerated(value = EnumType.STRING)
     private Genre genre;
 
@@ -25,6 +27,11 @@ public class Book {
     @ManyToOne
     @JoinColumn
     private Author author;
+
+    //Book is also child wrt to card
+    @ManyToOne
+    @JoinColumn
+    private Card card;
 
     public Book() {
     }
@@ -75,5 +82,22 @@ public class Book {
         this.pages = pages;
         this.genre = genre;
         this.author = author;
+    }
+
+    public boolean isIssued() {
+        return issued;
+    }
+
+
+    public void setIssued(boolean issued) {
+        this.issued = issued;
+    }
+
+    public Card getCard() {
+        return card;
+    }
+
+    public void setCard(Card card) {
+        this.card = card;
     }
 }

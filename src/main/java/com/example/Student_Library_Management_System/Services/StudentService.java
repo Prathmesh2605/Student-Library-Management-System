@@ -1,6 +1,7 @@
 package com.example.Student_Library_Management_System.Services;
 
 
+import com.example.Student_Library_Management_System.DTOs.StudentUpdateMobRequestDto;
 import com.example.Student_Library_Management_System.Enums.CardStatus;
 import com.example.Student_Library_Management_System.Models.Card;
 import com.example.Student_Library_Management_System.Models.Student;
@@ -41,5 +42,24 @@ public class StudentService {
         //By cascading effect, child will automatically be saved (cardRepo will be saved)
 
         return "Student and Card added";
+    }
+    public String findByEmail(String email){
+        Student student = studentRepository.findByEmail(email);
+
+        return student.getName();
+    }
+    public String updateMob(StudentUpdateMobRequestDto studentUpdateMobRequestDto){
+        //Convert Dto to entity
+
+
+
+
+        //Try to Fetch the original data
+        Student originalStudent = studentRepository.findById(studentUpdateMobRequestDto.getId()).get();
+
+        //We will keep the other properties as it is and only change the required parameters
+        originalStudent.setMobNo(studentUpdateMobRequestDto.getMobNo());
+        studentRepository.save(originalStudent);
+        return "Student has been update successfully";
     }
 }

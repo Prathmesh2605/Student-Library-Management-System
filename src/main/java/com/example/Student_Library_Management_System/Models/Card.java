@@ -43,6 +43,40 @@ public class Card {
     @OneToMany(mappedBy = "card", cascade = CascadeType.ALL)
     List<Book> bookIssued = new ArrayList<>();
 
+    //Card is parent wrt to Book
+    @OneToMany(mappedBy = "card",cascade = CascadeType.ALL)
+    List<Book> booksIssued = new ArrayList<>();
+
+
+    //Connecting the card class to the transaction
+    //Bidirectional Mapping
+    @OneToMany(mappedBy = "card", cascade = CascadeType.ALL)
+    private List<Transactions> transactionsList = new ArrayList<>();
+
+    public List<Book> getBookIssued() {
+        return bookIssued;
+    }
+
+    public void setBookIssued(List<Book> bookIssued) {
+        this.bookIssued = bookIssued;
+    }
+
+    public List<Book> getBooksIssued() {
+        return booksIssued;
+    }
+
+    public void setBooksIssued(List<Book> booksIssued) {
+        this.booksIssued = booksIssued;
+    }
+
+    public List<Transactions> getTransactionsList() {
+        return transactionsList;
+    }
+
+    public void setTransactionsList(List<Transactions> transactionsList) {
+        this.transactionsList = transactionsList;
+    }
+
     public void setStudentVariableName(Student studentVariableName) {
         this.studentVariableName = studentVariableName;
     }

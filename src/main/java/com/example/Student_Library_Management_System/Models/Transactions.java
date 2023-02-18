@@ -33,7 +33,17 @@ public class Transactions {
     private Book book; //book entity pk will come here and become a foreign key
 
     //we need to connect it to the card class
+    @ManyToOne
+    @JoinColumn
+    private Card card;
 
+    public Card getCard() {
+        return card;
+    }
+
+    public void setCard(Card card) {
+        this.card = card;
+    }
 
     @OneToMany(mappedBy = "book", cascade =  CascadeType.ALL)
     private List<Transactions> transactionsList  = new ArrayList<>();

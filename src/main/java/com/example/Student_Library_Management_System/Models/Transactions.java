@@ -45,16 +45,9 @@ public class Transactions {
         this.card = card;
     }
 
-    @OneToMany(mappedBy = "book", cascade =  CascadeType.ALL)
-    private List<Transactions> transactionsList  = new ArrayList<>();
 
-    public List<Transactions> getTransactionsList() {
-        return transactionsList;
-    }
 
-    public void setTransactionsList(List<Transactions> transactionsList) {
-        this.transactionsList = transactionsList;
-    }
+
 
     public Transactions(int id, TransactionStatus transactionStatus, int fine, String transactionId, Date transactionDate, boolean isIssueOperation, Book book) {
         this.id = id;

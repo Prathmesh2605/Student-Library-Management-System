@@ -4,10 +4,11 @@ package com.example.Student_Library_Management_System.Models;
 import com.example.Student_Library_Management_System.Enums.Genre;
 import jakarta.persistence.*;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-@Table(name = "book")
+@Table(name="book")
 public class Book {
 
     @Id
@@ -18,25 +19,29 @@ public class Book {
 
     private int pages;
 
-    private boolean issued;
-
     @Enumerated(value = EnumType.STRING)
     private Genre genre;
 
-    //Book is child wrt author
-    //Setting here the foreign key: Standard 3 steps
+    //Book is child wrt to author
+    //Setting here the foreign key : Standard 3 steps
 
     @ManyToOne
-    @JoinColumn
-    private Author author;
+    @JoinColumn //Add an extra attribute of authorId (parent table PK) for the foreign key of child table
+    private Author author; //This is the parent entity we are connecting with
 
-    //Book is also child wrt to card
+
+    //Book is also child wrt Card...
     @ManyToOne
     @JoinColumn
     private Card card;
 
+    private boolean issued;
+
+
+
     @OneToMany(mappedBy = "book",cascade = CascadeType.ALL)
     private List<Transactions> listOfTransactions = new ArrayList<>();
+
 
     public List<Transactions> getListOfTransactions() {
         return listOfTransactions;
@@ -46,8 +51,25 @@ public class Book {
         this.listOfTransactions = listOfTransactions;
     }
 
+    public Card getCard() {
+        return card;
+    }
+
+    public void setCard(Card card) {
+        this.card = card;
+    }
+
+    public boolean isIssued() {
+        return issued;
+    }
+
+    public void setIssued(boolean issued) {
+        this.issued = issued;
+    }
+
     public Book() {
     }
+
 
     public int getId() {
         return id;
@@ -87,30 +109,5 @@ public class Book {
 
     public void setAuthor(Author author) {
         this.author = author;
-    }
-
-    public Book(int id, String name, int pages, Genre genre, Author author) {
-        this.id = id;
-        this.name = name;
-        this.pages = pages;
-        this.genre = genre;
-        this.author = author;
-    }
-
-    public boolean isIssued() {
-        return issued;
-    }
-
-
-    public void setIssued(boolean issued) {
-        this.issued = issued;
-    }
-
-    public Card getCard() {
-        return card;
-    }
-
-    public void setCard(Card card) {
-        this.card = card;
     }
 }

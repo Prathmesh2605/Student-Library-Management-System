@@ -77,6 +77,14 @@ public class TransactionService {
         cardRepository.save(card);
 
 
-        return "";
+        return "Book issued successfully";
+    }
+    public String getTransactions(int bookId,int cardId){
+
+        List<Transactions> transactionsList = transactionRepository.getTransactionsForBookAndCard(bookId,cardId);
+
+        String transactionId = transactionsList.get(0).getTransactionId();
+
+        return transactionId;
     }
 }

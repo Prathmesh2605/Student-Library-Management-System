@@ -12,10 +12,22 @@ public class TransactionController
     @Autowired
     TransactionService transactionService;
 
-    @PostMapping("/issueBook")
-        public String issueBook(IssueBookRequestDto issueBookRequestDto){
-            return "";
+    @PostMapping("issueBook")
+    public String issueBook(@RequestBody IssueBookRequestDto issueBookRequestDto){
 
+        try{
+            return transactionService.issueBook(issueBookRequestDto);
+        }catch (Exception e){
+            return e.getMessage();
         }
+
+    }
+
+    @GetMapping("/getTxnInfo")
+    public String getTransactionEntry(@RequestParam("bookId")Integer bookId,@RequestParam
+            ("cardId")Integer cardId){
+
+        return transactionService.getTransactions(bookId,cardId);
+    }
     }
 

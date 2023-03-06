@@ -62,4 +62,27 @@ public class StudentService {
         studentRepository.save(originalStudent);
         return "Student has been update successfully";
     }
+    public String updateMobNo(StudentUpdateMobRequestDto studentReq){
+
+
+
+        //CONVERT THE DTO TO ENTITY : saved better
+
+
+
+        //First we will try to fetch originalData
+        Student originalStudent = studentRepository.findById(studentReq.getId()).get();
+
+        //We will keep the other properties as it is : and only change the required parameters
+
+        originalStudent.setMobNo(studentReq.getMobNo());
+
+
+        //Always entity object is being saved.
+        studentRepository.save(originalStudent);
+
+        return "Student has been updated successfully. ";
+
+    }
+
 }

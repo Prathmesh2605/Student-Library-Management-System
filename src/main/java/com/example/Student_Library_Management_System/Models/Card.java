@@ -39,7 +39,7 @@ public class Card {
         return studentVariableName;
     }
 
-    //car is parent wrt book
+    //card is parent wrt book
     @OneToMany(mappedBy = "card", cascade = CascadeType.ALL)
     List<Book> bookIssued = new ArrayList<>();
 
